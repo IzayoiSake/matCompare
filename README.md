@@ -19,11 +19,14 @@ matCompare是一个用于比较及合并.mat文件的Matlab App. Matlab自带的
   1. 运行 'matCompare'
   2. 点击图中按钮, 选择要比较的mat文件
   <img width="704" alt="image" src="https://github.com/user-attachments/assets/cdfb4017-1b61-46b3-91d1-9cb558252140">
+  
   3. 点击图中按钮, 选择另一个要比较的mat文件
   <img width="704" alt="image" src="https://github.com/user-attachments/assets/9b089c0f-1b81-4521-a558-cd9ed6e01b28">
+  
   4. 点击 '比较' 按钮
   5. (可选) 点击 '仅显示差异项'
   6. 点击选中比较表格中的行, 使用图中方框圈出来的按钮选择该行变量使用左侧mat数据还是右侧mat数据 (默认右侧数据)
   <img width="704" alt="image" src="https://github.com/user-attachments/assets/ac19529b-9078-4c7f-ad43-4881f5485f0b">
+  
   7. (可选) 双击比较表格中的行, 可打开matlab自带的比较工具visdiff, 比较选中变量的左右数据差异. 
   8. 选择完成后, 点击保存, 保存合并后的mat文件. 
