@@ -1,0 +1,103 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="878384392" file="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare\matCompare.prj" location="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
+    <param.appname>matCompare</param.appname>
+    <param.authnamewatermark>GYK</param.authnamewatermark>
+    <param.email />
+    <param.company />
+    <param.icon>${PROJECT_ROOT}\matCompare_resources\icon_24.png</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\matCompare_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\matCompare_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\matCompare_resources\icon_16.png</file>
+    </param.icons>
+    <param.summary>mat文件 合并 比较</param.summary>
+    <param.description>用于比较及合并mat文件</param.description>
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>${PROJECT_ROOT}</param.output>
+    <param.guid>ead5181f-be04-4ea7-998c-1c05adff6c49</param.guid>
+    <unset>
+      <param.email />
+      <param.company />
+      <param.screenshot />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\matCompare.mlapp</file>
+    </fileset.main>
+    <fileset.depfun />
+    <fileset.resources>
+      <file>${PROJECT_ROOT}\matCompareSrcCode</file>
+    </fileset.resources>
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code" name="matCompare" optional="false">C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>D:\Program Files\MATLAB\R2023a</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="gpucoder" />
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="neuralnetwork" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <gpucoder>
+          <enabled>true</enabled>
+        </gpucoder>
+      </toolbox>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <neuralnetwork>
+          <enabled>true</enabled>
+        </neuralnetwork>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
