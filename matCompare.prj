@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="878384392" file="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare\matCompare.prj" location="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
+  <configuration build-checksum="2110563289" file="D:\ProgramFiles\MatlabProjects\matCompare\matCompare.prj" location="D:\ProgramFiles\MatlabProjects\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
     <param.appname>matCompare</param.appname>
     <param.authnamewatermark>GYK</param.authnamewatermark>
     <param.email />
@@ -13,7 +13,7 @@
     <param.summary>mat文件 合并 比较</param.summary>
     <param.description>用于比较及合并mat文件</param.description>
     <param.screenshot />
-    <param.version>1.0</param.version>
+    <param.version>1.1</param.version>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -24,7 +24,6 @@
       <param.email />
       <param.company />
       <param.screenshot />
-      <param.version />
       <param.products.name />
       <param.products.id />
       <param.products.version />
@@ -40,7 +39,7 @@
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
-      <file location="C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code" name="matCompare" optional="false">C:\Users\IzayoiSake\OneDrive - IzayoiSake\Documents\ZinSight\CM60\Afe\Asw02_Afe\Code\matCompare</file>
+      <file location="D:\ProgramFiles\MatlabProjects" name="matCompare" optional="false">D:\ProgramFiles\MatlabProjects\matCompare</file>
     </build-deliverables>
     <workflow />
     <matlab>
