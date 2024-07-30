@@ -10,4 +10,5 @@ function closeFunc(app, event)
         end
     catch
     end
+    clear UIText;
 end

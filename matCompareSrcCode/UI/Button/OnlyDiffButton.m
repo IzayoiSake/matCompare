@@ -4,7 +4,7 @@ function OnlyDiffButton(app, event)
     
     if (State ~= StateEnum.Merging && State ~= StateEnum.Saved)
         % 警告
-        uialert(app.UIFigure, '请先比较开始比较', '警告', 'Icon', 'warning');
+        uialert(app.UIFigure, UIText.Text('Start compare first'), UIText.Text('Warn'), 'Icon', 'warning');
         source.Value = false;
         return;
     end

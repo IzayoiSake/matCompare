@@ -3,7 +3,7 @@ function SaveDataButton(app, event)
     State = app.State;
     if (State ~= StateEnum.Merging && State ~= StateEnum.Saved)
         % 弹出警告框
-        uialert(app.UIFigure, '还没有进行新的数据合并', '警告', 'Icon', 'warning');
+        uialert(app.UIFigure, UIText.Text('No new merge data'), UIText.Text('Warn'), 'Icon', 'warning');
         return;
     end
 
@@ -27,7 +27,7 @@ function SaveDataButton(app, event)
         end
     end
 
-    [file, path] = uiputfileNew('*.mat', '选择保存的.mat文件名');
+    [file, path] = uiputfileNew('*.mat', UIText.Text('Save mat file name'));
     if isequal(file, 0)
         return;
     end

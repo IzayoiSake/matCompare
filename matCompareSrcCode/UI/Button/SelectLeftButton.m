@@ -2,8 +2,8 @@ function SelectLeftButton(app, event)
     State = app.State;
     if (State == StateEnum.Merging)
         % 询问是否重新选择文件
-        selection = uiconfirm(app.UIFigure, '当前比较尚未保存, 是否丢弃并重新选择文件？', '警告', 'Options', {'是', '否'}, 'DefaultOption', 2, 'CancelOption', 2);
-        if strcmp(selection, '否')
+        selection = uiconfirm(app.UIFigure, UIText.Text('Discard and restart'), UIText.Text('Warn'), 'Options', {UIText.Text('Yes'), UIText.Text('No')}, 'DefaultOption', 2, 'CancelOption', 2);
+        if strcmp(selection, UIText.Text('No'))
             return;
         end
     end
@@ -24,9 +24,7 @@ function SelectLeftButton(app, event)
     [dataName, dataClass, dataValue, dataType] = matDataInfo(data);
 
     % 将数据显示到表格中
-    tableHeader = {'名字', '类型', '值', '数据类型'};
     dataTable = table(dataName, dataClass, dataValue, dataType);
-    handle.ColumnName = tableHeader;
     handle.Data = dataTable;
     handle.SelectionType = 'row';
 

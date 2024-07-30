@@ -1,59 +1,20 @@
-function UpDateCompareTable(appSource, compareLog, cmdMode)
+function UpDateCompareTable(appSource, tableLog, cmdMode)
     if ~exist('cmdMode', 'var')
         cmdMode = 'all';
     end
-    tableHeader = {'左数据名', '右数据名', '变化信息', '合并选项'};
     try
-        varName = compareLog.varName;
+        varName = tableLog.varName;
     catch
-        appSource.ColumnName = tableHeader;
         appSource.UserData.tableLog = [];
         appSource.Data = [];
         return;
     end
-    changeInfo = compareLog.changeInfo;
-    mergeOption = compareLog.mergeOption;
+    changeInfo = tableLog.changeInfo;
+    mergeOption = tableLog.mergeOption;
+    merged = tableLog.merged;
 
     % 表格内容更新
         varLength = length(varName);
-        % try
-        %     oldTableLog = appSource.UserData.tableLog;
-        %     oldVarName = oldTableLog.varName;
-        %     oldChangeInfo = oldTableLog.changeInfo;
-        %     oldMergeOption = oldTableLog.mergeOption;
-        % catch
-        %     oldTableLog = [];
-        %     oldVarName = [];
-        %     oldChangeInfo = [];
-        %     oldMergeOption = [];
-        % end
-        % oldLength = length(oldVarName);
-        % if (varLength ~= oldLength)
-        %     changeIndex = ones(varLength, 1);
-        %     changeIndex = find(changeIndex);
-
-        %     leftName = cell(varLength, 1);
-        %     rightName = cell(varLength, 1);
-        %     changeInfoDisplay = cell(varLength, 1);
-        %     mergeOptionDisplay = cell(varLength, 1);
-        % else
-        %     changeIndex = ~cellfun(@isequal, varName, oldVarName);
-        %     changeIndex = changeIndex | ~cellfun(@isequal, changeInfo, oldChangeInfo);
-        %     changeIndex = changeIndex | ~cellfun(@isequal, mergeOption, oldMergeOption);
-        %     changeIndex = find(changeIndex);
-        %     try
-        %         oldtableDataDisplay = appSource.Data;
-        %         leftName = oldtableDataDisplay.leftName;
-        %         rightName = oldtableDataDisplay.rightName;
-        %         changeInfoDisplay = oldtableDataDisplay.changeInfoDisplay;
-        %         mergeOptionDisplay = oldtableDataDisplay.mergeOptionDisplay;
-        %     catch
-        %         leftName = cell(varLength, 1);
-        %         rightName = cell(varLength, 1);
-        %         changeInfoDisplay = cell(varLength, 1);
-        %         mergeOptionDisplay = cell(varLength, 1);
-        %     end
-        % end
         changeIndex = ones(varLength, 1);
         changeIndex = find(changeIndex);
 
@@ -63,38 +24,40 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
         mergeOptionDisplay = cell(varLength, 1);
 
         changeIndexLength = length(changeIndex);
-        % 根据变化信息填充 左右数据名 和 显示的变化信息
-        for i = 1:changeIndexLength
-            index = changeIndex(i);
-            if (changeInfo{index} == changeInfoEnum.Same)
-                leftName{index} = varName{index};
-                rightName{index} = varName{index};
-                changeInfoDisplay{index} = '相同';
-            elseif (changeInfo{index} == changeInfoEnum.Different)
-                leftName{index} = varName{index};
-                rightName{index} = varName{index};
-                changeInfoDisplay{index} = '差异';
-            elseif (changeInfo{index} == changeInfoEnum.Add)
-                rightName{index} = varName{index};
-                changeInfoDisplay{index} = '新增';
-            elseif (changeInfo{index} == changeInfoEnum.Delete)
-                leftName{index} = varName{index};
-                changeInfoDisplay{index} = '删除';
+
+        if (strcmp(cmdMode, 'all') || strcmp(cmdMode, 'mergeOption'))
+            % 根据变化信息填充 左右数据名 和 显示的变化信息
+            for i = 1:changeIndexLength
+                index = changeIndex(i);
+                if (changeInfo{index} == changeInfoEnum.Same)
+                    leftName{index} = varName{index};
+                    rightName{index} = varName{index};
+                    changeInfoDisplay{index} = UIText.Text('ChangeInfo Same');
+                elseif (changeInfo{index} == changeInfoEnum.Different)
+                    leftName{index} = varName{index};
+                    rightName{index} = varName{index};
+                    changeInfoDisplay{index} = UIText.Text('ChangeInfo Different');
+                elseif (changeInfo{index} == changeInfoEnum.New)
+                    rightName{index} = varName{index};
+                    changeInfoDisplay{index} = UIText.Text('ChangeInfo New');
+                elseif (changeInfo{index} == changeInfoEnum.Delete)
+                    leftName{index} = varName{index};
+                    changeInfoDisplay{index} = UIText.Text('ChangeInfo Delete');
+                end
             end
-        end
-        % 根据合并选项填充 显示的合并选项
-        for i = 1:changeIndexLength
-            index = changeIndex(i);
-            if (mergeOption{index} == mergeOptionEnum.right)
-                mergeOptionDisplay{index} = '→';
-            elseif (mergeOption{index} == mergeOptionEnum.left)
-                mergeOptionDisplay{index} = '←';
+            % 根据合并选项填充 显示的合并选项
+            for i = 1:changeIndexLength
+                index = changeIndex(i);
+                if (mergeOption{index} == mergeOptionEnum.right)
+                    mergeOptionDisplay{index} = UIText.Text('Option right');
+                elseif (mergeOption{index} == mergeOptionEnum.left)
+                    mergeOptionDisplay{index} = UIText.Text('Option left');
+                end
             end
+            tableDataDisplay = table(leftName, rightName, changeInfoDisplay, mergeOptionDisplay);
+            appSource.Data = tableDataDisplay;
+            appSource.UserData.tableLog = tableLog;
         end
-        tableDataDisplay = table(leftName, rightName, changeInfoDisplay, mergeOptionDisplay);
-        appSource.Data = tableDataDisplay;
-        appSource.ColumnName = tableHeader;
-        appSource.UserData.tableLog = compareLog;
     % 表格样式更新
         if strcmp(cmdMode, 'all')
             removeStyle(appSource);
@@ -108,17 +71,31 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
         colorYellow = [1, 1, 0.8];
         colorWhite = [1, 1, 1];
         colorDeepPink = [1, 0, 1];
+        colorGray = [0.8, 0.8, 0.8];
         if (strcmp(cmdMode, 'all') || strcmp(cmdMode, 'selection'))
-            changeInfoIndex.Diff = cellfun(@(x) x == changeInfoEnum.Different, changeInfo);
-            changeInfoIndex.Diff = find(changeInfoIndex.Diff);
-            changeInfoIndex.Add = cellfun(@(x) x == changeInfoEnum.Add, changeInfo);
-            changeInfoIndex.Add = find(changeInfoIndex.Add);
-            changeInfoIndex.Delete = cellfun(@(x) x == changeInfoEnum.Delete, changeInfo);
-            changeInfoIndex.Delete = find(changeInfoIndex.Delete);
-            changeInfoIndex.Same = cellfun(@(x) x == changeInfoEnum.Same, changeInfo);
+            % 计算基础索引
+            changeInfoIndex.Same = zeros(varLength, 1);
+            changeInfoIndex.Diff = zeros(varLength, 1);
+            changeInfoIndex.New = zeros(varLength, 1);
+            changeInfoIndex.Delete = zeros(varLength, 1);
+            for i = 1:varLength
+                if (changeInfo{i} == changeInfoEnum.Same)
+                    changeInfoIndex.Same(i) = 1;
+                elseif (changeInfo{i} == changeInfoEnum.Different)
+                    changeInfoIndex.Diff(i) = 1;
+                elseif (changeInfo{i} == changeInfoEnum.New)
+                    changeInfoIndex.New(i) = 1;
+                elseif (changeInfo{i} == changeInfoEnum.Delete)
+                    changeInfoIndex.Delete(i) = 1;
+                end
+            end
             changeInfoIndex.Same = find(changeInfoIndex.Same);
+            changeInfoIndex.Diff = find(changeInfoIndex.Diff);
+            changeInfoIndex.New = find(changeInfoIndex.New);
+            changeInfoIndex.Delete = find(changeInfoIndex.Delete);
+            mergedIndex = find([merged{:}]);
+            % 如果是选择模式, 则只需要 选择索引 与 基础索引 的交集
             if strcmp(cmdMode, 'selection')
-                % 恢复上次选中的行的背景颜色
                 try
                     lastSelection = appSource.UserData.lastSelection;
                 catch
@@ -126,14 +103,16 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
                 end
                 if ~isempty(lastSelection)
                     changeInfoIndex.Diff = intersect(lastSelection, changeInfoIndex.Diff);
-                    changeInfoIndex.Add = intersect(lastSelection, changeInfoIndex.Add);
+                    changeInfoIndex.New = intersect(lastSelection, changeInfoIndex.New);
                     changeInfoIndex.Delete = intersect(lastSelection, changeInfoIndex.Delete);
                     changeInfoIndex.Same = intersect(lastSelection, changeInfoIndex.Same);
+                    mergedIndex = intersect(lastSelection, mergedIndex);
                 else
                     changeInfoIndex.Diff = [];
-                    changeInfoIndex.Add = [];
+                    changeInfoIndex.New = [];
                     changeInfoIndex.Delete = [];
                     changeInfoIndex.Same = [];
+                    mergedIndex = [];
                 end
             end
             % 差异的行标记为红色
@@ -143,10 +122,10 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
                 addStyle(appSource, style, 'row', changeInfoIndex.Diff);
             end
             % 新增的行标记为绿色
-            if ~isempty(changeInfoIndex.Add)
-                changeInfoIndex.Add = changeInfoIndex.Add(:);
+            if ~isempty(changeInfoIndex.New)
+                changeInfoIndex.New = changeInfoIndex.New(:);
                 style = uistyle('BackgroundColor', colorGreen);
-                addStyle(appSource, style, 'row', changeInfoIndex.Add);
+                addStyle(appSource, style, 'row', changeInfoIndex.New);
             end
             % 删除的行标记为黄色
             if ~isempty(changeInfoIndex.Delete)
@@ -160,7 +139,15 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
                 style = uistyle('BackgroundColor', colorWhite);
                 addStyle(appSource, style, 'row', changeInfoIndex.Same);
             end
+            % merged 为 true 的行标记为灰色
+            if ~isempty(mergedIndex)
+                mergedIndex = mergedIndex(:);
+                style = uistyle('BackgroundColor', colorGray);
+                addStyle(appSource, style, 'row', mergedIndex);
+            end
+
         end
+
         % 选中的行标记为粉色, 字体加粗
         if (strcmp(cmdMode, 'all') || strcmp(cmdMode, 'selection'))
             try
@@ -183,25 +170,33 @@ function UpDateCompareTable(appSource, compareLog, cmdMode)
 
         % 根据 合并选项 修改该单元格的文本位置
         if (strcmp(cmdMode, 'all') || strcmp(cmdMode, 'mergeOption'))
-            mergeOptionLeftIndex = cellfun(@(x) x == mergeOptionEnum.left, mergeOption);
-            mergeOptionLeftIndex = find(mergeOptionLeftIndex);
-            mergeOptionRightIndex = cellfun(@(x) x == mergeOptionEnum.right, mergeOption);
-            mergeOptionRightIndex = find(mergeOptionRightIndex);
-            if ~isempty(mergeOptionLeftIndex)
-                mergeOptionLeftIndex = mergeOptionLeftIndex(:);
-                indexLength = length(mergeOptionLeftIndex);
+            mergeOptionIndex.Left = zeros(varLength, 1);
+            mergeOptionIndex.Right = zeros(varLength, 1);
+            for i = 1:varLength
+                if (mergeOption{i} == mergeOptionEnum.left)
+                    mergeOptionIndex.Left(i) = 1;
+                elseif (mergeOption{i} == mergeOptionEnum.right)
+                    mergeOptionIndex.Right(i) = 1;
+                end
+            end
+            mergeOptionIndex.Left = find(mergeOptionIndex.Left);
+            mergeOptionIndex.Right = find(mergeOptionIndex.Right);
+            
+            if ~isempty(mergeOptionIndex.Left)
+                mergeOptionIndex.Left = mergeOptionIndex.Left(:);
+                indexLength = length(mergeOptionIndex.Left);
                 pos = zeros(indexLength, 1);
                 pos(:) = 4;
-                cellIndex = [mergeOptionLeftIndex, pos];
+                cellIndex = [mergeOptionIndex.Left, pos];
                 style = uistyle('HorizontalAlignment', 'left');
                 addStyle(appSource, style, 'cell', cellIndex);
             end
-            if ~isempty(mergeOptionRightIndex)
-                mergeOptionRightIndex = mergeOptionRightIndex(:);
-                indexLength = length(mergeOptionRightIndex);
+            if ~isempty(mergeOptionIndex.Right)
+                mergeOptionIndex.Right = mergeOptionIndex.Right(:);
+                indexLength = length(mergeOptionIndex.Right);
                 pos = zeros(indexLength, 1);
                 pos(:) = 4;
-                cellIndex = [mergeOptionRightIndex, pos];
+                cellIndex = [mergeOptionIndex.Right, pos];
                 style = uistyle('HorizontalAlignment', 'right');
                 addStyle(appSource, style, 'cell', cellIndex);
             end

@@ -26,31 +26,27 @@ function CompareTableSelection(app, event)
         % 找到左右数据的索引
         leftIndex = find(ismember(leftName, varName));
         rightIndex = find(ismember(rightName, varName));
-        
+
         % 将Table的该行设置为粉色, 字体加粗, 并滚动到该行
         removeStyle(app.UITable_LeftData);
         if ~isempty(leftIndex)
             scroll(app.UITable_LeftData, 'row', leftIndex);
             style = uistyle('BackgroundColor', [1, 0.8, 1], 'FontWeight', 'bold');
             addStyle(app.UITable_LeftData, style, 'row', leftIndex);
-            app.UITable_Compare.focus;
         end
         removeStyle(app.UITable_RightData);
         if ~isempty(rightIndex)
             scroll(app.UITable_RightData, 'row', rightIndex);
             style = uistyle('BackgroundColor', [1, 0.8, 1], 'FontWeight', 'bold');
             addStyle(app.UITable_RightData, style, 'row', rightIndex);
-            app.UITable_Compare.focus;
         end
         % 将选中的行设置为粉色, 字体加粗
         tableLog = app.UITable_Compare.UserData.tableLog;
         UpDateCompareTable(app.UITable_Compare, tableLog, 'selection');
-        drawnow;
     catch
-        
+
     end
-    drawnow;
     
-    % 聚焦回比较表
-    app.UITable_Compare.focus;
+    % % 聚焦回比较表
+    % app.UITable_Compare.focus;
 end

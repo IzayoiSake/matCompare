@@ -2,8 +2,8 @@ function data = CompareButton(app, event)
     State = app.State;
     if (State == StateEnum.Merging)
         % 询问是否重新比较
-        selection = uiconfirm(app.UIFigure, '是否重新比较？(如果存在未保存数据, 将会丢失)', '警告', 'Options', {'是', '否'}, 'DefaultOption', 2, 'CancelOption', 2);
-        if strcmp(selection, '否')
+        selection = uiconfirm(app.UIFigure, UIText.Text('Compare again'), UIText.Text('Warn'), 'Options', {UIText.Text('Yes'), UIText.Text('No')}, 'DefaultOption', 2, 'CancelOption', 2);
+        if strcmp(selection, UIText.Text('No'))
             return;
         end
     end
@@ -13,7 +13,7 @@ function data = CompareButton(app, event)
         rightData = app.UserData.RightData.matData;
     catch
         % 弹出警告框
-        uialert(app.UIFigure, '请先选择左右数据', '警告', 'Icon', 'warning');
+        uialert(app.UIFigure, UIText.Text('Select data first'), UIText.Text('Warn'), 'Icon', 'warning');
         UpDateCompareTable(app.UITable_Compare, []);
         return;
     end
@@ -34,6 +34,7 @@ function data = CompareButton(app, event)
     varName = uniqueDataName;
     changeInfo = cell(varLength, 1);
     mergeOption = cell(varLength, 1);
+    merged = cell(varLength, 1);
 
     for i = 1:varLength
         % 初始化为合并右边, 记录在 mergeOption
@@ -51,13 +52,15 @@ function data = CompareButton(app, event)
                 changeInfo{i} = changeInfoEnum.Different;
             end
         elseif (isInRight && ~isInLeft)
-            changeInfo{i} = changeInfoEnum.Add;
+            changeInfo{i} = changeInfoEnum.New;
         else
             changeInfo{i} = changeInfoEnum.Delete;
         end
+        % 初始化为未合并, 记录在 merged
+        merged{i} = false;
     end
     
-    compareLog = table(varName, changeInfo, mergeOption);
+    compareLog = table(varName, changeInfo, mergeOption, merged);
     
     UpDateCompareTable(app.UITable_Compare, compareLog);
 

@@ -1,13 +1,13 @@
 function CompareTableDoubleClicked(app, event)
     State = app.State;
+    source = app.UITable_Compare;
     if (State ~= StateEnum.Merging && State ~= StateEnum.Saved)
         % 弹出警告框
-        uialert(app.UIFigure, '请先选择开始比较', '警告', 'Icon', 'warning');
+        uialert(app.UIFigure, UIText.Text('Start compare first'), UIText.Text('Warn'), 'Icon', 'warning');
         return;
     end
     displayRow = event.InteractionInformation.DisplayRow;
     displayColumn = event.InteractionInformation.DisplayColumn;
-    source = event.Source;
     if isempty(displayRow)
         return;
     end
