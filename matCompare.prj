@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="2110563289" file="D:\ProgramFiles\MatlabProjects\matCompare\matCompare.prj" location="D:\ProgramFiles\MatlabProjects\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
+  <configuration build-checksum="2069270075" file="D:\ProgramFiles\MatlabProjects\matCompare\matCompare.prj" location="D:\ProgramFiles\MatlabProjects\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
     <param.appname>matCompare</param.appname>
     <param.authnamewatermark>GYK</param.authnamewatermark>
     <param.email />
@@ -12,8 +12,8 @@
     </param.icons>
     <param.summary>mat文件 合并 比较</param.summary>
     <param.description>用于比较及合并mat文件</param.description>
-    <param.screenshot />
-    <param.version>1.1</param.version>
+    <param.screenshot>${PROJECT_ROOT}\matCompareSrcCode\UI\Figure\07-31-24-103138.png</param.screenshot>
+    <param.version>1.2</param.version>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -23,7 +23,6 @@
     <unset>
       <param.email />
       <param.company />
-      <param.screenshot />
       <param.products.name />
       <param.products.id />
       <param.products.version />
