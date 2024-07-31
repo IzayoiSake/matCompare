@@ -3,7 +3,7 @@
 ## Language
 
 - [English](README.md)
-- [中文](ReadMe/README_CN.md)
+- [中文](README_CN.md)
 
 ## Introduction
 
@@ -16,7 +16,7 @@ matCompare is a Matlab App for comparing and merging .mat files. Matlab's built-
 1. Matlab 2023a and higher versions.
 2. Simulink corresponding to the Matlab version.
 
-### **Installation:** 
+### **Installation:**
 
 1. Run Matlab.
 2. Use Matlab to run the installation file 'matCompare.mlappinstall'.
