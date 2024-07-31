@@ -3,7 +3,7 @@
 ## 语言
 
 - [English](README.md)
-- [中文](ReadMe/README_CN.md)
+- [中文](README_CN.md)
 
 ## 简介
 
