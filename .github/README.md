@@ -1,3 +1,4 @@
+
 # matCompare
 
 ## Language
@@ -28,12 +29,13 @@ Steps for use:
 
 1. Run 'matCompare'.
 2. Click the button in the image to select the mat file you want to compare.
-   `<img width="704" alt="image" src="https://github.com/user-attachments/assets/cdfb4017-1b61-46b3-91d1-9cb558252140">`
+   ![1722413178267](image/README/1722413178267.png)
 3. Click the button in the image to select another mat file to compare.
-   `<img width="704" alt="image" src="https://github.com/user-attachments/assets/9b089c0f-1b81-4521-a558-cd9ed6e01b28">`
+   ![1722413196456](image/README/1722413196456.png)
 4. Click the 'Compare' button.
 5. (Optional) Click 'Only show differences'.
 6. Click on a row in the comparison table and use the button encircled in the image to choose whether to use the left or right mat data for the selected row variable (right side data is default).
-   `<img width="704" alt="image" src="https://github.com/user-attachments/assets/ac19529b-9078-4c7f-ad43-4881f5485f0b">`
+   ![1722413747789](image/README/1722413747789.png)
 7. (Optional) Double-click a row in the comparison table to open Matlab's built-in comparison tool visdiff, to compare the differences in left and right data for the selected variable.
 8. After making your selections, click save to save the merged mat file.
+   ![1722413777184](image/README/1722413777184.png)
