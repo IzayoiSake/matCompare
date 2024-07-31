@@ -7,7 +7,7 @@
 
 ## Introduction
 
-    matCompare is a Matlab App for comparing and merging .mat files. Matlab's built-in comparison tool cannot specify multiple variables for one-time merging, and can only select a single variable for merging each time. After a single variable is merged, the comparison will be automatically rerun before the next variable can be merged. It is not convenient to use when there are many variables. To address this problem, this App has modified the comparison and merging methods.
+matCompare is a Matlab App for comparing and merging .mat files. Matlab's built-in comparison tool cannot specify multiple variables for one-time merging, and can only select a single variable for merging each time. After a single variable is merged, the comparison will be automatically rerun before the next variable can be merged. It is not convenient to use when there are many variables. To address this problem, this App has modified the comparison and merging methods.
 
 ## Install and run
 
