@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.apptool" plugin-version="1.0">
-  <configuration build-checksum="2069270075" file="D:\ProgramFiles\MatlabProjects\matCompare\matCompare.prj" location="D:\ProgramFiles\MatlabProjects\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
+  <configuration build-checksum="2700961381" file="D:\ProgramFiles\MatlabProjects\matCompare\matCompare.prj" location="D:\ProgramFiles\MatlabProjects\matCompare" name="matCompare" target="target.mlapps" target-name="打包为 App">
     <param.appname>matCompare</param.appname>
     <param.authnamewatermark>GYK</param.authnamewatermark>
     <param.email />
@@ -11,9 +11,9 @@
       <file>${PROJECT_ROOT}\matCompare_resources\icon_16.png</file>
     </param.icons>
     <param.summary>mat文件 合并 比较</param.summary>
-    <param.description>用于比较及合并mat文件</param.description>
+    <param.description>用于比较及合并mat文件, V1.3</param.description>
     <param.screenshot>${PROJECT_ROOT}\matCompareSrcCode\UI\Figure\07-31-24-103138.png</param.screenshot>
-    <param.version>1.2</param.version>
+    <param.version>1.3</param.version>
     <param.products.name />
     <param.products.id />
     <param.products.version />
@@ -42,7 +42,7 @@
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>D:\Program Files\MATLAB\R2023a</root>
+      <root>D:\Program Files\MATLAB\R2024b</root>
       <toolboxes>
         <toolbox name="matlabcoder" />
         <toolbox name="embeddedcoder" />
